@@ -55,6 +55,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          # The tools' versions are pinned in the Makefile.
+          cache-dependency-glob: Makefile
       # Claude Code's own manifest validator; `make check` runs it when
       # `claude` is on PATH. It needs no login to validate.
       - run: npm install --global @anthropic-ai/claude-code
