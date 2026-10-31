@@ -1,0 +1,17 @@
+{
+  "name": "repokit",
+  "version": "0.0.0",
+  "description": "Create repositories and keep them up to standard with Claude Code and Codex: a small base with a generated logo and one set of agent instructions, optional pieces (a check command, CI, Dependabot, release-please, an Issues roadmap, branch protection), and numbered migrations that bring repos set up earlier up to date.",
+  "author": {
+    "name": "John Foland"
+  },
+  "homepage": "https://github.com/johnfoland/repokit",
+  "repository": "https://github.com/johnfoland/repokit",
+  "license": "MIT",
+  "keywords": [
+    "scaffolding",
+    "repository",
+    "github",
+    "codex"
+  ]
+}

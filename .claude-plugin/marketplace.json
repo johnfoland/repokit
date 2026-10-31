@@ -1,0 +1,16 @@
+{
+  "name": "repokit",
+  "owner": {
+    "name": "John Foland"
+  },
+  "metadata": {
+    "description": "The repokit plugin for Claude Code and Codex."
+  },
+  "plugins": [
+    {
+      "name": "repokit",
+      "source": "./plugins/repokit",
+      "description": "Create repositories and keep them up to standard with Claude Code and Codex."
+    }
+  ]
+}

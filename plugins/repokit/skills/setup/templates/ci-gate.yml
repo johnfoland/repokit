@@ -1,0 +1,29 @@
+  # Add this job to `.github/workflows/ci.yml` when CI has more than one
+  # check job (a lint job, a test matrix, a package build). It stands in for
+  # `check` as the one required status check, so jobs can be added, split or
+  # renamed without editing the branch protection.
+  ok:
+    # The job name is the required status check on the default branch, so
+    # rename it only together with the branch protection.
+    name: CI passed
+    # Without always(), a failed check skips this job, and a skipped job
+    # reports success.
+    if: always()
+    # Every job that must pass, plus `changes`. Leave out jobs that run on
+    # some events only: one skipped on a push would fail this.
+    needs: [changes, <check jobs>]
+    runs-on: ubuntu-latest
+    steps:
+      # Passes only if every job in `needs` but `changes` succeeded, or was
+      # skipped on a pull request `changes` found docs-only. jq judges all
+      # the results in one expression and `-e` turns false into exit 1, so a
+      # job added to `needs` is covered with no other edit. Don't rewrite it
+      # as a shell loop of `test … || …`: under `bash -e` only the last
+      # iteration's status counts, so an earlier failure passes.
+      - env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          jq -e '(.changes.outputs.code == "false") as $docs
+            | del(.changes)
+            | all(.[]; .result == "success" or ($docs and .result == "skipped"))' \
+            <<<"$NEEDS" >/dev/null
