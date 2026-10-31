@@ -220,6 +220,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 
-# Notes for one machine (see AGENTS.md)
+# Notes for one machine (see AGENTS.md), but not the skill's template for them
 CLAUDE.local.md
+!plugins/repokit/skills/setup/templates/CLAUDE.local.md
 .DS_Store
